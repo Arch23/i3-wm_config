@@ -12,3 +12,5 @@ if type "xrandr"; then
     fi
     /bin/bash ~/.config/polybar/launch.sh &
 fi
+
+$(feh --no-fehbg --bg-scale ~/Imagens/Wall/aenami/alena-aenami-004-1k1.jpg ~/Imagens/Wall/aenami/alena-aenami-lines1k.jpg &)

@@ -49,7 +49,7 @@ font-2 = Wuncon Siji:pixelsize=10;1
 font-3 = FontAwesome:pixelsize=13;2
 
 modules-left = i3
-modules-center = 
+modules-center = mpd
 modules-right = xbacklight pulseaudio-tail time battery powermenu
 
 tray-position = right
@@ -132,6 +132,8 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
+format = <label-layout>
+
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 
@@ -139,7 +141,6 @@ label-layout = %layout%
 
 label-indicator-padding = 2
 label-indicator-margin = 0
-label-indicator-background = ${colors.secondary}
 
 [module/filesystem]
 type = internal/fs
@@ -165,13 +166,14 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = ${colors.foreground}
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-padding = 2
+label-focused-foreground = ${colors.background}
+label-focused-padding = 5
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
@@ -179,8 +181,9 @@ label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-background = ${colors.background-alt}
+label-visible-padding = 2
+label-visible-foreground = ${colors.background}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
@@ -194,11 +197,11 @@ label-urgent-padding = 2
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -323,7 +326,7 @@ label-muted-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT0
 adapter = AC0
-full-at = 94
+full-at = 90
 
 format-charging = <animation-charging> <label-charging>
 
@@ -375,19 +378,9 @@ label-close = " "
 label-close-foreground = ${colors.foreground-alt}
 
 menu-0-0 = "  "
-menu-0-0-exec = menu-open-1
+menu-0-0-exec = reboot
 menu-0-1 = "  " 
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = "  "
-menu-1-0-exec = menu-open-0
-menu-1-1 = "  "
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = "  "
-menu-2-0-exec = sudo poweroff
-menu-2-1 = "  "
-menu-2-1-exec = menu-open-0
+menu-0-1-exec = shutdown now
 
 [module/system-nvidia-bbswitch]
 type = custom/script
@@ -408,7 +401,7 @@ click-left = ~/.config/polybar/scripts/pulseaudio-tail/pulseaudio-tail.sh --mute
 scroll-up = ~/.config/polybar/scripts/pulseaudio-tail/pulseaudio-tail.sh --up
 scroll-down = ~/.config/polybar/scripts/pulseaudio-tail/pulseaudio-tail.sh --down
 format = <label>
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %output%
 
